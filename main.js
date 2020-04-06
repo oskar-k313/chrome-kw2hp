@@ -1,12 +1,15 @@
-var context = "selection"
-var title = "- Test";
+
 chrome.contextMenus.create(
   {
-    "title": title, 
-    "contexts":[context],
-    "onclick": function () {
-      var selection = window.getSelection();
-      console.log('---- ', selection);
+    "title": `Convert to hp`, 
+    "contexts": ["selection"],
+    "onclick": function(info, tab) { 
+      alert(
+        Math.floor(info.selectionText.match(/\d+/)) + 
+        'kW = ' + 
+        Math.floor(info.selectionText.match(/\d+/)*1.34102)
+        +"hp"
+      )
     }
   }
 );
